@@ -7,10 +7,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// LOGIN PAGE (design only)
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login.page');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
 
+// REGISTER PAGE (design only)
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register.page');
-Route::post('/register', [AuthController::class, 'register'])->name('register');
 
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+// DASHBOARD (no database)
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+// LOGOUT (design only)
+Route::post('/logout', function () {
+    return redirect('/login');
+})->name('logout');
