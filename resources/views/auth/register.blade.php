@@ -1,94 +1,118 @@
 @extends('layouts.app')
 
 @section('content')
-<div style="display:grid; grid-template-columns: 1.1fr .9fr; gap:18px; align-items:start;"
-     class="register-grid">
+<div class="auth-wrap">
+    <section class="glass-panel auth-info green-tint">
+        <h1>Create your account ✨</h1>
+        <p>Register to start taking quizzes and track your progress.</p>
 
-    {{-- Left: intro card --}}
-    <div class="card">
-        <h1 style="margin:0 0 10px; font-size:28px;">Create your account ✨</h1>
-        <p class="muted" style="margin:0 0 14px; line-height:1.6;">
-            Register to start taking quizzes and track your progress.
-        </p>
-
-        <div style="display:grid; gap:10px; margin-top:14px;">
-            <div style="padding:12px; border:1px solid var(--border); border-radius:14px; background:rgba(255,255,255,.03);">
-                🚀 Quick setup
-            </div>
-            <div style="padding:12px; border:1px solid var(--border); border-radius:14px; background:rgba(255,255,255,.03);">
-                🧠 Learn at your pace
-            </div>
-            <div style="padding:12px; border:1px solid var(--border); border-radius:14px; background:rgba(255,255,255,.03);">
-                🎯 Improve with attempts
-            </div>
+        <div class="feature-list">
+            <div class="feature-item">🚀 Quick setup</div>
+            <div class="feature-item">🧠 Learn at your pace</div>
+            <div class="feature-item">🎯 Improve with attempts</div>
         </div>
-    </div>
+    </section>
 
-    {{-- Right: form card --}}
-    <div class="card">
-        <h2 style="margin:0 0 6px;">Register</h2>
-        <p class="muted" style="margin:0 0 12px;">Fill in your details to get started.</p>
+    <section class="glass-panel auth-form-card">
+        <h2>Register</h2>
+        <p>Fill in your details to get started.</p>
 
-       <form method="POST" action="{{ route('register') }}">
-    @csrf
+        <form method="POST" action="{{ route('register') }}" class="auth-form" id="registerForm">
+            @csrf
 
-            <div class="field">
-                <label>Full Name</label>
-                <input type="text" name="name" placeholder="Your name" required>
+            <div>
+                <label for="name">Full Name</label>
+                <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus placeholder="Your name">
+                @error('name')
+                    <div class="form-error">{{ $message }}</div>
+                @enderror
             </div>
 
-            <div class="field">
-                <label>Email</label>
-                <input type="email" name="email" placeholder="you@example.com" required>
+            <div>
+                <label for="email">Email</label>
+                <input id="email" type="email" name="email" value="{{ old('email') }}" required placeholder="you@example.com">
+                @error('email')
+                    <div class="form-error">{{ $message }}</div>
+                @enderror
             </div>
 
-            <div class="field">
-                <label>Password</label>
-                <input id="regPass" type="password" name="password" placeholder="Create a password" required>
+            <div>
+                <label for="password">Password</label>
+                <input id="password" type="password" name="password" required placeholder="Create a password">
+                @error('password')
+                    <div class="form-error">{{ $message }}</div>
+                @enderror
             </div>
 
-            <div class="field">
-                <label>Confirm Password</label>
-                <input id="regPass2" type="password" name="password_confirmation" placeholder="Repeat your password" required>
-                <div id="pwMsg" class="muted" style="font-size:13px; margin-top:8px;"></div>
+            <div>
+                <label for="password_confirmation">Confirm Password</label>
+                <input id="password_confirmation" type="password" name="password_confirmation" required placeholder="Repeat your password">
+
+                <!-- ❌ Error -->
+                <div id="password-match-error" class="form-error" style="display: none;">
+                    The password confirmation does not match.
+                </div>
+
+                <!-- ✅ Success -->
+                <div id="password-match-success" class="form-success" style="display: none; color: #4ade80;">
+                    Passwords match ✓
+                </div>
+
+                @error('password_confirmation')
+                    <div class="form-error">{{ $message }}</div>
+                @enderror
             </div>
 
-            <button class="btn" type="submit" style="margin-top:14px;">Create account</button>
+            <button type="submit" class="btn btn-primary btn-full">Create account</button>
+
+            <p class="bottom-link">
+                Already have an account?
+                <a href="{{ route('login') }}" class="inline-link">Login</a>
+            </p>
         </form>
-
-        <p class="muted" style="margin-top:14px; font-size:14px;">
-            Already have an account?
-            <a href="{{ route('login.page') }}">Login</a>
-        </p>
-    </div>
+    </section>
 </div>
 
-<style>
-    @media (max-width: 900px){
-        .register-grid{ grid-template-columns: 1fr !important; }
-    }
-</style>
-
 <script>
-    const p1 = document.getElementById('regPass');
-    const p2 = document.getElementById('regPass2');
-    const msg = document.getElementById('pwMsg');
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('registerForm');
+    const password = document.getElementById('password');
+    const confirmPassword = document.getElementById('password_confirmation');
+    const errorText = document.getElementById('password-match-error');
+    const successText = document.getElementById('password-match-success');
 
-    function checkMatch(){
-        if(!p1.value || !p2.value){
-            msg.textContent = '';
-            return;
+    function checkPasswordMatch() {
+        const passwordValue = password.value;
+        const confirmValue = confirmPassword.value;
+
+        if (confirmValue.length === 0) {
+            errorText.style.display = 'none';
+            successText.style.display = 'none';
+            confirmPassword.style.borderColor = '';
+            return true;
         }
-        if(p1.value === p2.value){
-            msg.textContent = '✅ Passwords match';
-            msg.style.color = '#9ef0b7';
-        } else {
-            msg.textContent = '❌ Passwords do not match';
-            msg.style.color = '#ffb3b3';
+
+        if (passwordValue !== confirmValue) {
+            errorText.style.display = 'block';
+            successText.style.display = 'none';
+            confirmPassword.style.borderColor = '#fca5a5';
+            return false;
         }
+
+        errorText.style.display = 'none';
+        successText.style.display = 'block';
+        confirmPassword.style.borderColor = '#4ade80';
+        return true;
     }
 
-    p1.addEventListener('input', checkMatch);
-    p2.addEventListener('input', checkMatch);
+    password.addEventListener('input', checkPasswordMatch);
+    confirmPassword.addEventListener('input', checkPasswordMatch);
+
+    form.addEventListener('submit', function (e) {
+        if (!checkPasswordMatch()) {
+            e.preventDefault();
+        }
+    });
+});
 </script>
 @endsection

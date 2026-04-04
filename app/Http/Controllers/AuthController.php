@@ -24,11 +24,11 @@ class AuthController extends Controller
     // Register user
     public function register(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|confirmed'
-        ]);
+       $request->validate([
+    'name' => 'required|string|max:255',
+    'email' => 'required|email|max:255|unique:users,email',
+    'password' => 'required|confirmed|min:8',
+]);
 
         $user = User::create([
             'name' => $request->name,
@@ -44,21 +44,6 @@ class AuthController extends Controller
     // Login user
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials)) {
-            return redirect('/dashboard');
-        }
-
-        return back()->withErrors([
-            'email' => 'Invalid credentials'
-        ]);
-    }
-
-    // Logout
-    public function logout()
-    {
-        Auth::logout();
-        return redirect('/');
+        // add login logic here later
     }
 }

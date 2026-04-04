@@ -10,14 +10,11 @@ return new class extends Migration
     {
         Schema::create('attempts', function (Blueprint $table) {
             $table->id();
-
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('quiz_id')->constrained()->onDelete('cascade');
-
             $table->unsignedInteger('total_questions');
             $table->unsignedInteger('correct_answers');
             $table->unsignedInteger('score');
-
             $table->timestamps();
 
             $table->unique(['user_id', 'quiz_id']);
