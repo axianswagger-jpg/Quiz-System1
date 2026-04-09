@@ -7,15 +7,13 @@
     <div class="sidebar-label">MENU</div>
     <a class="sidebar-link" href="{{ route('quiz-history') }}">Quiz History</a>
     <a class="sidebar-link" href="{{ route('leaderboard') }}">Leaderboard</a>
-    <a class="sidebar-link" href="{{ route('profile') }}">Profile</a>
-    <a class="sidebar-link" href="{{ route('settings') }}">Settings</a>
+    <a class="sidebar-link" href="{{ route('profile.edit') }}">Profile</a>    <a class="sidebar-link" href="{{ route('settings') }}">Settings</a>
     <a class="sidebar-link" ...>My Scores</a>
 </div>
 
 <div class="sidebar-group">
     <div class="sidebar-label">ADMIN</div>
-    <a class="sidebar-link" href="{{ route('create-quiz') }}">Create Quiz</a>
-</div>
+    <a class="sidebar-link" href="{{ route('create-quiz') }}">Create Quiz</a></div>
     </aside>
 
     <section class="dashboard-main glass-panel">
