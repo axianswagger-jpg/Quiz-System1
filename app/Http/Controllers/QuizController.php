@@ -148,4 +148,14 @@ class QuizController extends Controller
             'total' => $total,
         ]);
     }
+public function scores()
+{
+    $attempts = auth()->user()->attempts()
+        ->with('quiz')
+        ->latest()
+        ->get()
+        ->unique('quiz_id')
+        ->values();
+    return view('scores', compact('attempts'));
 }
+    }
