@@ -19,4 +19,9 @@ class Attempt extends Model
     {
         return $this->hasMany(AttemptAnswer::class);
     }
+public function quiz()
+{
+    return $this->belongsTo(Quiz::class);
 }
+
+    }

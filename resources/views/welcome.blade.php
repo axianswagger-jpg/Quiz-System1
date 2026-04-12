@@ -11,7 +11,6 @@
                 <span class="feature-pill">🧠 Smart Practice</span>
                 <span class="feature-pill">⏱️ Timed Quizzes</span>
                 <span class="feature-pill">📊 Progress Tracking</span>
-                <span class="feature-pill">🏆 Leaderboards</span>
             </div>
 
             <div class="button-row">

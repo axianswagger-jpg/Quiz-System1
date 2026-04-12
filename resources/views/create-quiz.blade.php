@@ -171,6 +171,13 @@
 
   <form method="POST" action="{{ route('quiz.store') }}" style="margin-top:16px;">
     @csrf
+    @if($errors->any())
+      <div style="background:red; color:white; padding:10px; margin-bottom:10px;">
+        @foreach($errors->all() as $error)
+          <p>{{ $error }}</p>
+        @endforeach
+      </div>
+    @endif
 
     {{-- Quiz Details --}}
     <div class="cq-card">

@@ -11,7 +11,6 @@
         margin-bottom: 16px;
     }
     .cq-header h1 { font-size: 32px; font-weight: 700; margin: 0 0 6px; color: #fff; }
-    .cq-header p { color: #aac4e0; font-size: 15px; margin: 0; }
     .cq-card {
         background: rgba(255,255,255,0.05);
         border: 1px solid rgba(255,255,255,0.1);
@@ -20,16 +19,22 @@
         margin-bottom: 16px;
         border-left: 5px solid #68c3ff;
     }
-    .cq-card h2 { font-size: 17px; font-weight: 700; margin: 0 0 6px; color: #eaf1fc; }
-    .cq-card p { font-size: 14px; color: #9fb0cb; margin: 0; }
-    .btn-take {
-        margin-top: 12px;
-        padding: 8px 20px; border-radius: 8px;
-        background: #68c3ff; color: #0d2a52;
-        font-weight: 700; font-size: 13px;
-        text-decoration: none; display: inline-block;
+    .cq-card h3 { font-size: 16px; font-weight: 700; color: #eaf1fc; margin-bottom: 14px; }
+    .option-label {
+        display: flex; align-items: center; gap: 10px;
+        padding: 10px 14px; border-radius: 8px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        color: #eaf1fc; font-size: 14px;
+        cursor: pointer; margin-bottom: 8px;
     }
-    .empty-state { text-align: center; color: #9fb0cb; padding: 40px; }
+    .option-label:hover { background: rgba(104,195,255,0.1); }
+    .btn-submit {
+        padding: 12px 32px; border-radius: 8px;
+        background: #68c3ff; color: #0d2a52;
+        font-weight: 700; font-size: 15px;
+        border: none; cursor: pointer; margin-top: 10px;
+    }
 </style>
 
 <div class="dashboard-wrap">
@@ -51,19 +56,25 @@
     <section class="dashboard-main glass-panel">
         <div class="cq-wrap">
             <div class="cq-header">
-                <h1>📝 Available Quizzes</h1>
-                <p>Select a quiz to start.</p>
+                <h1>📝 {{ $quiz->title }}</h1>
             </div>
 
-            @forelse($quizzes as $quiz)
-            <div class="cq-card">
-                <h2>{{ $quiz->title }}</h2>
-                <p>{{ $quiz->description ?? 'No description.' }} &nbsp;|&nbsp; {{ $quiz->questions_count }} questions</p>
-                <a href="{{ route('take-quiz.show', $quiz->id) }}" class="btn-take">Start Quiz</a>
-            </div>
-            @empty
-                <div class="empty-state">No quizzes available yet.</div>
-            @endforelse
+            <form action="{{ route('take-quiz.submit', $quiz->id) }}" method="POST">
+                @csrf
+                @foreach($quiz->questions as $index => $question)
+                <div class="cq-card">
+                    <h3>{{ $index + 1 }}. {{ $question->question_text }}</h3>
+                    @foreach($question->options as $option)
+                    <label class="option-label">
+                        <input type="radio" name="answers[{{ $question->id }}]" value="{{ $option->id }}" required>
+                        {{ $option->option_text }}
+                    </label>
+                    @endforeach
+                </div>
+                @endforeach
+
+                <button type="submit" class="btn-submit">Submit Quiz</button>
+            </form>
         </div>
     </section>
 </div>

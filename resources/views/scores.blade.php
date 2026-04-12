@@ -1,5 +1,95 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>My Scores</h1>
+<style>
+    .cq-wrap { max-width: 720px; margin: 0 auto; padding: 32px 16px 60px; }
+    .cq-header {
+        background: linear-gradient(135deg, #1a3a6b, #0d2a52);
+        border-radius: 16px 16px 0 0;
+        border-top: 8px solid #68c3ff;
+        padding: 28px 32px;
+        margin-bottom: 16px;
+    }
+    .cq-header h1 { font-size: 32px; font-weight: 700; margin: 0 0 6px; color: #fff; }
+    .cq-header p { color: #aac4e0; font-size: 15px; margin: 0; }
+    .cq-card {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 12px;
+        padding: 24px 28px;
+        margin-bottom: 16px;
+        border-left: 5px solid #68c3ff;
+    }
+    .cq-card h2 { font-size: 17px; font-weight: 700; margin: 0 0 6px; color: #eaf1fc; }
+    .cq-card p { font-size: 14px; color: #9fb0cb; margin: 4px 0; }
+    .score-big { font-size: 36px; font-weight: 700; color: #68c3ff; }
+    .result-card {
+        background: rgba(104,195,255,0.1);
+        border: 1px solid rgba(104,195,255,0.3);
+        border-radius: 12px;
+        padding: 24px 28px;
+        margin-bottom: 16px;
+        text-align: center;
+    }
+    .result-card h2 { color: #68c3ff; font-size: 22px; margin-bottom: 8px; }
+    .btn-take {
+        margin-top: 12px;
+        padding: 8px 20px; border-radius: 8px;
+        background: #68c3ff; color: #0d2a52;
+        font-weight: 700; font-size: 13px;
+        text-decoration: none; display: inline-block;
+    }
+    .empty-state { text-align: center; color: #9fb0cb; padding: 40px; }
+</style>
+
+<div class="dashboard-wrap">
+    <aside class="glass-panel sidebar">
+        <div class="sidebar-group">
+            <div class="sidebar-label">MENU</div>
+            <a class="sidebar-link" href="{{ route('quiz-history') }}">Quiz History</a>
+            <a class="sidebar-link" href="{{ route('profile.edit') }}">Profile</a>
+            <a class="sidebar-link" href="{{ route('settings') }}">Settings</a>
+            <a class="sidebar-link" href="{{ route('scores') }}">My Scores</a>
+            <a class="sidebar-link" href="{{ route('quiz.index') }}">Manage Quizzes</a>
+        </div>
+        <div class="sidebar-group">
+            <div class="sidebar-label"></div>
+            <a class="sidebar-link" href="{{ route('create-quiz') }}">Create Quiz</a>
+        </div>
+    </aside>
+
+    <section class="dashboard-main glass-panel">
+        <div class="cq-wrap">
+            <div class="cq-header">
+                <h1>🏆 My Scores</h1>
+                <p>Your quiz results.</p>
+            </div>
+
+            {{-- Show result after submitting --}}
+            @if(session('result'))
+            <div class="result-card">
+                <h2>✅ Quiz Completed!</h2>
+                <p style="color:#aac4e0;">{{ session('result')['title'] }}</p>
+                <div class="score-big">{{ session('result')['score'] }}%</div>
+                <p style="color:#9fb0cb;">{{ session('result')['correct'] }} / {{ session('result')['total'] }} correct</p>
+                <a href="{{ route('take-quiz') }}" class="btn-take">Take Another Quiz</a>
+            </div>
+            @endif
+
+            {{-- All past scores --}}
+            @forelse(auth()->user()->attempts()->with('quiz')->latest()->get() as $attempt)
+            <div class="cq-card">
+                <h2>{{ $attempt->quiz->title }}</h2>
+                <p>Score: <strong style="color:#68c3ff;">{{ $attempt->score }}%</strong></p>
+                <p>Correct: {{ $attempt->correct_answers }} / {{ $attempt->total_questions }}</p>
+                <p style="font-size:12px;">{{ $attempt->created_at->diffForHumans() }}</p>
+            </div>
+            @empty
+                @if(!session('result'))
+                <div class="empty-state">No scores yet. Take a quiz first!</div>
+                @endif
+            @endforelse
+        </div>
+    </section>
+</div>
 @endsection

@@ -6,13 +6,14 @@
         <div class="sidebar-group">
     <div class="sidebar-label">MENU</div>
     <a class="sidebar-link" href="{{ route('quiz-history') }}">Quiz History</a>
-    <a class="sidebar-link" href="{{ route('leaderboard') }}">Leaderboard</a>
     <a class="sidebar-link" href="{{ route('profile.edit') }}">Profile</a>    <a class="sidebar-link" href="{{ route('settings') }}">Settings</a>
     <a class="sidebar-link" ...>My Scores</a>
+   <a class="sidebar-link" href="{{ route('quiz.index') }}">Manage Quizzes</a>
+
 </div>
 
 <div class="sidebar-group">
-    <div class="sidebar-label">ADMIN</div>
+    <div class="sidebar-label"></div>
     <a class="sidebar-link" href="{{ route('create-quiz') }}">Create Quiz</a></div>
     </aside>
 
@@ -49,7 +50,7 @@
                 <p>No scores yet</p>
             </div>
             <div class="stat-card">
-                <h3>Leaderboard Rank</h3>
+                <h3> Rank</h3>
                 <div class="stat-number">-</div>
                 <p>No ranking yet</p>
             </div>
@@ -62,7 +63,7 @@
 
                 <div class="feature-item">📚 View available quizzes anytime</div>
                 <div class="feature-item">📈 Track scores and performance easily</div>
-                <div class="feature-item">🏆 Check leaderboard and recent activity</div>
+                <div class="feature-item">🏆 Check  and recent activity</div>
             </div>
 
             <div class="large-card">
@@ -71,7 +72,7 @@
 
                 <a class="sidebar-link" href="#">Start New Quiz</a>
                 <a class="sidebar-link" href="#">View My Scores</a>
-                <a class="sidebar-link" href="#">Open Leaderboard</a>
+                <a class="sidebar-link" href="#">Open </a>
                 <a class="btn btn-primary btn-full" href="#">Go to Reports</a>
             </div>
         </div>
