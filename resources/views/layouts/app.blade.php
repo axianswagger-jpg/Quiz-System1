@@ -10,6 +10,15 @@
 </head>
 <body>
 
+       <!-- LOGO (TOP LEFT) -->
+    <div style="position: fixed; top: 28px; left: 25px; z-index: 2000;">
+    <a href="{{ route('dashboard') }}" class="brand-logo">
+        QuizMo
+    </a>
+
+    </a>
+</div>
+
     <main class="page-shell">
         @yield('content')
     </main>
