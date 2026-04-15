@@ -1,29 +1,32 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+@section('content')
+<div class="dashboard-main">
+    <div class="glass-panel" style="padding: 28px; max-width: 900px;">
+        <h1 style="font-size: 42px; font-weight: 800; margin: 0 0 8px;">Profile</h1>
+        <p style="color: var(--muted); margin: 0 0 24px;">
+            Manage your account information, password, and account settings.
+        </p>
+
+        <div style="display: grid; gap: 20px;">
+            <div style="padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 18px;">
                 <div class="max-w-xl">
                     @include('profile.partials.update-profile-information-form')
                 </div>
             </div>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+            <div style="padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 18px;">
                 <div class="max-w-xl">
                     @include('profile.partials.update-password-form')
                 </div>
             </div>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+            <div style="padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 18px;">
                 <div class="max-w-xl">
                     @include('profile.partials.delete-user-form')
                 </div>
             </div>
         </div>
     </div>
-</x-app-layout>
+</div>
+@endsection

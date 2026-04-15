@@ -26,7 +26,9 @@
             </div>
 
             <div class="dashboard-top-right">
-                <span class="user-pill">Student / Admin</span>
+               <a href="{{ route('profile.edit') }}" class="user-pill">
+    {{ auth()->user()->name ?? 'User' }}
+</a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="btn btn-primary">Logout</button>
