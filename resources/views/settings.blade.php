@@ -9,21 +9,19 @@
 
             <div class="settings-section-title">Account Settings</div>
 
-            <a href="{{ route('profile.edit') }}" class="settings-item">
+            <div class="settings-item">
                 <div>
                     <div class="item-title">Account Information</div>
                     <div class="item-sub">View and edit your profile</div>
                 </div>
-                <div class="arrow">›</div>
-            </a>
+            </div>
 
-            <a href="#" class="settings-item">
+            <div class="settings-item">
                 <div>
                     <div class="item-title">Sign in and Security</div>
                     <div class="item-sub">Change your password</div>
                 </div>
-                <div class="arrow">›</div>
-            </a>
+            </div>
 
             <div class="settings-item">
                 <div>
@@ -38,7 +36,9 @@
 
             <form method="POST" action="{{ route('logout') }}" class="settings-item logout-form">
                 @csrf
-                <button type="submit" class="logout-btn">Sign Out</button>
+                <button type="submit" class="logout-btn">
+                    Sign Out
+                </button>
             </form>
 
         </div>
@@ -106,11 +106,6 @@
     font-size: 13px;
     color: rgba(255,255,255,0.6);
     margin-top: 4px;
-}
-
-.arrow {
-    font-size: 22px;
-    color: rgba(255,255,255,0.45);
 }
 
 .logout-form {

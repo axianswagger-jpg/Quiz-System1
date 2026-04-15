@@ -4,7 +4,7 @@
 <div class="settings-page">
     <div class="settings-container">
         <div class="top-bar">
-            <a href="{{ route('settings.edit') }}" class="back-btn">←</a>
+            <a href="{{ route('settings') }}" class="back-btn">←</a>
             <h1 class="settings-title">Sign in and Security</h1>
             <div class="top-space"></div>
         </div>

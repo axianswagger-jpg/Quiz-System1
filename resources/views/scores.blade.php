@@ -85,7 +85,7 @@
             <div class="sidebar-label">MENU</div>
             <a class="sidebar-link" href="{{ route('quiz-history') }}">Quiz History</a>
             <a class="sidebar-link" href="{{ route('profile.edit') }}">Profile</a>
-            <a class="sidebar-link" href="{{ route('settings.edit') }}">Settings</a>
+            <a class="sidebar-link" href="{{ route('settings') }}">Settings</a>
             <a class="sidebar-link" href="{{ route('scores') }}">My Scores</a>
             <a class="sidebar-link" href="{{ route('quiz.index') }}">Manage Quizzes</a>
         </div>
