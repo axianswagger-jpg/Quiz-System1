@@ -3,32 +3,30 @@
 @section('content')
 <div class="settings-page">
     <div class="settings-container">
-        <div class="top-bar">
-            <a href="{{ route('settings') }}" class="back-btn">←</a>
-            <h1 class="settings-title">Account Information</h1>
-            <div class="top-space"></div>
-        </div>
+        <h1 class="settings-title">Account Information</h1>
 
         <div class="settings-card">
-            <div class="info-item">
-                <span class="info-label">Full Name</span>
-                <span class="info-value">{{ auth()->user()->name }}</span>
+
+            <div class="info-row">
+                <label>Full Name</label>
+                <p>{{ auth()->user()->name }}</p>
             </div>
 
-            <div class="info-item">
-                <span class="info-label">Email</span>
-                <span class="info-value">{{ auth()->user()->email }}</span>
+            <div class="info-row">
+                <label>Email</label>
+                <p>{{ auth()->user()->email }}</p>
             </div>
 
-            <div class="info-item">
-                <span class="info-label">Account Type</span>
-                <span class="info-value">Student</span>
+            <div class="info-row">
+                <label>Account Type</label>
+                <p>Student</p>
             </div>
 
-            <div class="info-item">
-                <span class="info-label">Joined</span>
-                <span class="info-value">{{ auth()->user()->created_at->format('M d, Y') }}</span>
+            <div class="info-row">
+                <label>Joined</label>
+                <p>{{ auth()->user()->created_at->format('M d, Y') }}</p>
             </div>
+
         </div>
     </div>
 </div>
@@ -36,7 +34,7 @@
 <style>
 .settings-page {
     min-height: 100vh;
-    background: #f3f4f6;
+    background: #f4f6f9;
     padding: 30px 15px;
 }
 
@@ -45,60 +43,32 @@
     margin: auto;
 }
 
-.top-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.settings-title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
     margin-bottom: 20px;
 }
 
-.back-btn {
-    text-decoration: none;
-    font-size: 28px;
-    color: #111827;
-    font-weight: bold;
-    width: 40px;
-}
-
-.top-space {
-    width: 40px;
-}
-
-.settings-title {
-    font-size: 28px;
-    font-weight: 700;
-    color: #111827;
-    margin: 0;
-}
-
 .settings-card {
-    background: #fff;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
 
-.info-item {
-    padding: 18px 20px;
-    border-bottom: 1px solid #e5e7eb;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+.info-row {
+    margin-bottom: 15px;
 }
 
-.info-item:last-child {
-    border-bottom: none;
+.info-row label {
+    font-size: 12px;
+    color: gray;
 }
 
-.info-label {
-    font-size: 13px;
-    color: #6b7280;
-}
-
-.info-value {
-    font-size: 17px;
-    font-weight: 600;
-    color: #111827;
+.info-row p {
+    font-size: 16px;
+    font-weight: 500;
 }
 </style>
 @endsection

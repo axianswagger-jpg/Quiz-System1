@@ -26,9 +26,16 @@ Route::middleware(['auth'])->group(function () {
     })->name('quiz-history');
 
     // Settings
-    Route::get('/settings', function () {
-        return view('settings');
-    })->name('settings');
+Route::get('/settings', function () {
+    return view('settings');
+})->name('settings');
+
+Route::get('/security', function () {
+    return view('settings.security');
+})->name('settings.security');
+
+Route::patch('/settings/profile', [SettingsController::class, 'updateProfile'])->name('settings.profile.update');
+Route::put('/settings/password', [SettingsController::class, 'updatePassword'])->name('settings.password.update');
 
     // Quiz CRUD
     Route::get('/create-quiz', [QuizController::class, 'create'])->name('create-quiz');

@@ -14,6 +14,14 @@
             min-height: 100vh;
             overflow-x: hidden;
         }
+        .brand-logo {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+}
 
         /* Sidebar + Main layout */
         .shell {
@@ -21,17 +29,44 @@
             flex-wrap: wrap;
         }
 
-        .sidebar {
-            width: 250px;
-            flex-shrink: 0;
-            transition: width 0.3s;
-        }
+       /* ===== LAYOUT WRAPPER ===== */
+.dashboard-wrap {
+    display: flex;
+    min-height: 100vh;
+}
 
-        .main {
-            flex: 1;
-            min-width: 0; /* prevent overflow */
-            overflow-x: hidden;
-        }
+/* ===== SIDEBAR (FIXED) ===== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+
+    padding: 110px 22px 22px 22px; /* space for logo */
+
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+/* ===== MAIN CONTENT ===== */
+.dashboard-main {
+    margin-left: 260px; /* same as sidebar width */
+    width: calc(100% - 260px);
+
+    padding: 30px;
+    min-height: 100vh;
+}
+/* ===== ACTIVE SIDEBAR LINK ===== */
+.sidebar-link {
+    transition: all 0.2s ease;
+}
+
+.active-link {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: inset 0 0 10px rgba(255,255,255,0.05);
+}
 
         /* Card grids */
         .card-grid {
@@ -86,7 +121,7 @@
                 grid-template-columns: 1fr !important;
             }
             .sidebar {
-                padding: 16px !important;
+                padding: 1px !important;
             }
             .topbar h1 {
                 font-size: 24px !important;

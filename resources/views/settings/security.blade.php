@@ -1,32 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="settings-page">
-    <div class="settings-container">
-        <div class="top-bar">
-            <a href="{{ route('settings') }}" class="back-btn">←</a>
-            <h1 class="settings-title">Sign in and Security</h1>
-            <div class="top-space"></div>
-        </div>
+<div class="security-page">
+    <div class="security-container">
+        <h1 class="security-title">Security</h1>
+        <p class="security-subtitle">Change your password to keep your account secure.</p>
 
-        @if(session('success'))
+        @if (session('success'))
             <div class="success-box">
                 {{ session('success') }}
             </div>
         @endif
 
-        <div class="settings-card">
-            <div class="card-header">
-                <h2>Change Password</h2>
-                <p>Update your password to keep your account secure.</p>
-            </div>
-
+        <div class="security-card">
             <form method="POST" action="{{ route('settings.password.update') }}" class="security-form">
                 @csrf
                 @method('PUT')
 
                 <div class="form-group">
-                    <label>Current Password</label>
+                    <label class="form-label">Current Password</label>
                     <input type="password" name="current_password" class="form-input" placeholder="Enter current password">
                     @error('current_password')
                         <div class="error-text">{{ $message }}</div>
@@ -34,7 +26,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>New Password</label>
+                    <label class="form-label">New Password</label>
                     <input type="password" name="password" class="form-input" placeholder="Enter new password">
                     @error('password')
                         <div class="error-text">{{ $message }}</div>
@@ -42,7 +34,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Confirm Password</label>
+                    <label class="form-label">Confirm Password</label>
                     <input type="password" name="password_confirmation" class="form-input" placeholder="Confirm new password">
                 </div>
 
@@ -53,127 +45,105 @@
 </div>
 
 <style>
-.settings-page {
+.security-page {
     min-height: 100vh;
-    background: #f3f4f6;
-    padding: 30px 15px;
+    padding: 40px 15px;
+    background: radial-gradient(circle at top left, #112a64, #03163d 60%, #02102b 100%);
 }
 
-.settings-container {
-    max-width: 500px;
+.security-container {
+    max-width: 900px;
     margin: auto;
 }
 
-.top-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
+.security-title {
+    font-size: 56px;
+    font-weight: 800;
+    color: #f8fafc;
+    margin-bottom: 8px;
+    line-height: 1;
 }
 
-.back-btn {
-    text-decoration: none;
-    font-size: 28px;
-    color: #111827;
-    font-weight: bold;
-    width: 40px;
+.security-subtitle {
+    font-size: 16px;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 28px;
 }
 
-.top-space {
-    width: 40px;
-}
-
-.settings-title {
-    font-size: 28px;
-    font-weight: 700;
-    color: #111827;
-    margin: 0;
-    text-align: center;
-}
-
-.success-box {
-    margin-bottom: 15px;
-    padding: 12px 16px;
-    border-radius: 12px;
-    background: #dcfce7;
-    color: #166534;
-    border: 1px solid #86efac;
-}
-
-.settings-card {
-    background: #fff;
-    border-radius: 18px;
-    padding: 22px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-}
-
-.card-header h2 {
-    margin: 0 0 6px 0;
-    font-size: 24px;
-    color: #111827;
-}
-
-.card-header p {
-    margin: 0 0 20px 0;
-    color: #6b7280;
-    font-size: 14px;
+.security-card {
+    background: rgba(255,255,255,0.04);
+    border-radius: 22px;
+    padding: 28px;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.30);
 }
 
 .security-form {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 18px;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 8px;
 }
 
-.form-group label {
+.form-label {
     font-size: 14px;
     font-weight: 600;
-    color: #374151;
+    color: #f8fafc;
 }
 
 .form-input {
     width: 100%;
-    padding: 13px 14px;
-    border: 1px solid #d1d5db;
+    padding: 14px 16px;
     border-radius: 12px;
-    color: #111827;
-    background: #fff;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.08);
+    color: #ffffff;
     outline: none;
-}
-
-.form-input:focus {
-    border-color: #60a5fa;
-    box-shadow: 0 0 0 3px rgba(96,165,250,0.2);
+    transition: 0.2s ease;
 }
 
 .form-input::placeholder {
-    color: #9ca3af;
+    color: rgba(255,255,255,0.45);
+}
+
+.form-input:focus {
+    border-color: rgba(96,165,250,0.8);
+    box-shadow: 0 0 0 3px rgba(96,165,250,0.18);
 }
 
 .save-btn {
-    margin-top: 4px;
+    width: fit-content;
+    padding: 12px 20px;
     border: none;
     border-radius: 12px;
-    background: #2563eb;
+    background: #60a5fa;
     color: white;
-    padding: 13px 16px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
 }
 
 .save-btn:hover {
-    background: #1d4ed8;
+    background: #3b82f6;
 }
 
 .error-text {
-    color: #dc2626;
+    color: #f87171;
     font-size: 13px;
+}
+
+.success-box {
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    background: rgba(74,222,128,0.10);
+    border: 1px solid rgba(74,222,128,0.30);
+    color: #4ade80;
 }
 </style>
 @endsection

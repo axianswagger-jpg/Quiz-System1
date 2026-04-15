@@ -6,41 +6,31 @@
         <h1 class="settings-title">Settings</h1>
 
         <div class="settings-card">
-
             <div class="settings-section-title">Account Settings</div>
 
-            <a href="{{ route('profile.edit') }}" class="settings-item">
-                <div>
-                    <div class="item-title">Account Information</div>
-                    <div class="item-sub">View and edit your profile</div>
-                </div>
-                <div class="arrow">›</div>
-            </a>
+           <div class="settings-item" onclick="window.location='{{ route('profile.edit') }}'">
+    <div>
+        <div class="item-title">Account Information</div>
+        <div class="item-sub">View and edit your profile</div>
+    </div>
+    <span class="arrow">›</span>
+</div>
 
-            <a href="#" class="settings-item">
-                <div>
-                    <div class="item-title">Sign in and Security</div>
-                    <div class="item-sub">Change your password</div>
-                </div>
-                <div class="arrow">›</div>
-            </a>
+<div class="settings-item" onclick="window.location='{{ route('profile.edit') }}'">
+    <div>
+        <div class="item-title">Sign in and Security</div>
+        <div class="item-sub">Change your password</div>
+    </div>
+    <span class="arrow">›</span>
+</div>
 
-            <div class="settings-item">
-                <div>
-                    <div class="item-title">Email Notifications</div>
-                    <div class="item-sub">Receive quiz updates</div>
-                </div>
-                <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                </label>
-            </div>
-
-            <form method="POST" action="{{ route('logout') }}" class="settings-item logout-form">
+            <form method="POST" action="{{ route('logout') }}" class="logout-form">
                 @csrf
-                <button type="submit" class="logout-btn">Sign Out</button>
+                <button type="submit" class="settings-item logout-btn-wrap">
+                    <span class="item-title logout-btn">Sign Out</span>
+                    <span class="arrow">›</span>
+                </button>
             </form>
-
         </div>
     </div>
 </div>
@@ -85,11 +75,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     padding: 20px 24px;
     border-top: 1px solid rgba(255,255,255,0.06);
     text-decoration: none;
     color: #f8fafc;
+    background: transparent;
     transition: background 0.2s ease;
+    cursor: pointer;
+    box-sizing: border-box;
 }
 
 .settings-item:hover {
@@ -111,60 +105,20 @@
 .arrow {
     font-size: 22px;
     color: rgba(255,255,255,0.45);
+    flex-shrink: 0;
 }
 
 .logout-form {
     margin: 0;
 }
 
-.logout-btn {
-    background: none;
+.logout-btn-wrap {
     border: none;
+    text-align: left;
+}
+
+.logout-btn {
     color: #f87171;
-    font-weight: 700;
-    cursor: pointer;
-    font-size: 16px;
-    padding: 0;
-}
-
-.switch {
-    position: relative;
-    width: 46px;
-    height: 26px;
-}
-
-.switch input {
-    display: none;
-}
-
-.slider {
-    position: absolute;
-    background: #334155;
-    border-radius: 999px;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-.slider::before {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    left: 3px;
-    top: 3px;
-    background: white;
-    border-radius: 50%;
-    transition: 0.3s ease;
-}
-
-.switch input:checked + .slider {
-    background: #22c55e;
-}
-
-.switch input:checked + .slider::before {
-    transform: translateX(20px);
 }
 </style>
 @endsection
