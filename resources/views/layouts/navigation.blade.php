@@ -27,6 +27,6 @@
     <a href="{{ route('quiz-history') }}" class="sidebar-link">Quiz History</a>
     <a href="{{ route('leaderboard') }}" class="sidebar-link">Leaderboard</a>
     <a href="{{ route('profile') }}" class="sidebar-link">Profile</a>
-    <a href="{{ route('settings') }}" class="sidebar-link">Settings</a>
+    <a href="{{ route('settings.edit') }}" class="sidebar-link">Settings</a>
     <a href="{{ route('create-quiz') }}" class="sidebar-link">Create Quiz</a>
 </div>
