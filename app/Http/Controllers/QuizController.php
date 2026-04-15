@@ -133,13 +133,17 @@ class QuizController extends Controller
             }
         }
 
-        $total = $quiz->questions->count();
-        $score = $total > 0 ? round(($correct / $total) * 100) : 0;
+      $total = $quiz->questions->count();
+$score = $total > 0 ? round(($correct / $total) * 100) : 0;
 
-        Attempt::updateOrCreate(
-            ['user_id' => Auth::id(), 'quiz_id' => $id],
-            ['total_questions' => $total, 'correct_answers' => $correct, 'score' => $score]
-        );
+Attempt::create([
+    'user_id' => Auth::id(),
+    'quiz_id' => $id,
+    'total_questions' => $total,
+    'correct_answers' => $correct,
+    'score' => $score,
+]);
+    
 
         return redirect()->route('scores')->with('result', [
             'title' => $quiz->title,

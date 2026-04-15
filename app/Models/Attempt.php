@@ -23,5 +23,8 @@ public function quiz()
 {
     return $this->belongsTo(Quiz::class);
 }
-
+public function user()
+{
+    return $this->belongsTo(\App\Models\User::class);
+}
     }

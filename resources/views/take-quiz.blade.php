@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.quiz')
 
 @section('content')
 <style>
@@ -31,24 +31,6 @@
     }
     .empty-state { text-align: center; color: #9fb0cb; padding: 40px; }
 </style>
-
-<div class="dashboard-wrap">
-    <aside class="glass-panel sidebar">
-        <div class="sidebar-group">
-            <div class="sidebar-label">MENU</div>
-            <a class="sidebar-link" href="{{ route('quiz-history') }}">Quiz History</a>
-            <a class="sidebar-link" href="{{ route('profile.edit') }}">Profile</a>
-            <a class="sidebar-link" href="{{ route('settings') }}">Settings</a>
-            <a class="sidebar-link" href="{{ route('scores') }}">My Scores</a>
-            <a class="sidebar-link" href="{{ route('quiz.index') }}">Manage Quizzes</a>
-        </div>
-        <div class="sidebar-group">
-            <div class="sidebar-label"></div>
-            <a class="sidebar-link" href="{{ route('create-quiz') }}">Create Quiz</a>
-        </div>
-    </aside>
-
-    <section class="dashboard-main glass-panel">
         <div class="cq-wrap">
             <div class="cq-header">
                 <h1>📝 Available Quizzes</h1>
@@ -65,6 +47,4 @@
                 <div class="empty-state">No quizzes available yet.</div>
             @endforelse
         </div>
-    </section>
-</div>
 @endsection

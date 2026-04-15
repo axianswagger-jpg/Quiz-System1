@@ -1,9 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuizController;
-use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\SettingsController;
+
+use App\Http\Controllers\AttemptController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -11,6 +14,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
 
+Route::get('/leaderboard', [AttemptController::class, 'leaderboard'])->name('leaderboard');
     // Dashboard
     Route::get('/dashboard', function () {
         return view('dashboard', [
@@ -21,9 +25,7 @@ Route::middleware(['auth'])->group(function () {
     })->name('dashboard');
 
     // Quiz History
-    Route::get('/quiz-history', function () {
-        return view('quiz-history');
-    })->name('quiz-history');
+    Route::get('/quiz-history', [AttemptController::class, 'history'])->name('quiz-history');
 
     // Settings
 Route::get('/settings', function () {
@@ -56,12 +58,16 @@ Route::put('/settings/password', [SettingsController::class, 'updatePassword'])-
 
     // Scores
     Route::get('/scores', [QuizController::class, 'scores'])->name('scores');
-});
 
-Route::middleware('auth')->group(function () {
+    // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    //Leaderboard
+    
+    
+
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

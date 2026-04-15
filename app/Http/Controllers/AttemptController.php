@@ -8,7 +8,7 @@ use App\Models\Quiz;
 
 class AttemptController extends Controller
 {
-    // ── Submit quiz answers ──────────────────────────────
+    // Submit quiz answers
     public function submit(Request $request)
     {
         $validated = $request->validate([
@@ -24,6 +24,8 @@ class AttemptController extends Controller
             ->where('quiz_id', $validated['quiz_id'])
             ->count();
 
+        // Uncomment this later if you want to enforce max attempts
+        /*
         if ($quiz->max_attempts > 0 && $attemptsUsed >= $quiz->max_attempts) {
             return response()->json([
                 'success'       => false,
@@ -32,14 +34,13 @@ class AttemptController extends Controller
                 'max_attempts'  => $quiz->max_attempts,
             ], 403);
         }
+        */
 
-        // Save attempt (adjust fields to match your DB columns)
         $attempt = Attempt::create([
             'user_id'      => $validated['user_id'],
             'quiz_id'      => $validated['quiz_id'],
-            'answers'      => $validated['answers'],               // cast to array/json in model
+            'answers'      => $validated['answers'],
             'time_seconds' => $validated['time_seconds'] ?? 0,
-            // 'score' => $score, // if you compute it
         ]);
 
         return response()->json([
@@ -51,30 +52,35 @@ class AttemptController extends Controller
         ], 201);
     }
 
-    // ── Score / attempt history ──────────────────────────
+    // Score / attempt history
     public function history(Request $request)
     {
-        $validated = $request->validate([
-            'user_id' => 'required|integer',
-            'quiz_id' => 'nullable|integer',
-        ]);
+        $attempts = Attempt::with('quiz')
+            ->where('user_id', auth()->id())
+            ->orderBy('quiz_id', 'asc')
+            ->orderBy('created_at', 'asc')
+            ->get();
 
-        $query = Attempt::where('user_id', $validated['user_id']);
+        $attemptCounts = [];
 
-        if (!empty($validated['quiz_id'])) {
-            $query->where('quiz_id', $validated['quiz_id']);
+        foreach ($attempts as $attempt) {
+            $quizId = $attempt->quiz_id;
+
+            if (!isset($attemptCounts[$quizId])) {
+                $attemptCounts[$quizId] = 1;
+            } else {
+                $attemptCounts[$quizId]++;
+            }
+
+            $attempt->attempt_number = $attemptCounts[$quizId];
         }
 
-        $attempts = $query->latest()->get();
+        $attempts = $attempts->sortByDesc('created_at')->values();
 
-        return response()->json([
-            'success'  => true,
-            'count'    => $attempts->count(),
-            'attempts' => $attempts,
-        ]);
+        return view('quiz-history', compact('attempts'));
     }
 
-    // ── Single attempt detail ────────────────────────────
+    // Single attempt detail
     public function show($id, Request $request)
     {
         $validated = $request->validate([
@@ -91,7 +97,7 @@ class AttemptController extends Controller
         ]);
     }
 
-    // ── Check if user can still attempt ─────────────────
+    // Check if user can still attempt
     public function canAttempt(Request $request)
     {
         $validated = $request->validate([
@@ -113,5 +119,17 @@ class AttemptController extends Controller
             'attempts_used' => $attemptsUsed,
             'max_attempts'  => $quiz->max_attempts,
         ]);
+    }
+
+    // Overall leaderboard
+    public function leaderboard()
+    {
+        $leaderboard = Attempt::with('user')
+            ->selectRaw('user_id, AVG(score) as avg_score, COUNT(*) as total_attempts')
+            ->groupBy('user_id')
+            ->orderByDesc('avg_score')
+            ->get();
+
+        return view('leaderboard', compact('leaderboard'));
     }
 }
