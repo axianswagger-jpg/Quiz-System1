@@ -121,15 +121,5 @@ class AttemptController extends Controller
         ]);
     }
 
-    // Overall leaderboard
-    public function leaderboard()
-    {
-        $leaderboard = Attempt::with('user')
-            ->selectRaw('user_id, AVG(score) as avg_score, COUNT(*) as total_attempts')
-            ->groupBy('user_id')
-            ->orderByDesc('avg_score')
-            ->get();
-
-        return view('leaderboard', compact('leaderboard'));
-    }
+    
 }
