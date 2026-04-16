@@ -27,7 +27,6 @@
             <a class="sidebar-link" href="{{ route('profile.edit') }}">Profile</a>
             <a class="sidebar-link" href="{{ route('settings') }}">Settings</a>
            <a class="sidebar-link" href="{{ route('scores') }}">My Scores</a>
-           <a class="sidebar-link" href="{{ route('leaderboard') }}">Leaderboard</a>
             <a class="sidebar-link" href="{{ route('quiz.index') }}">Manage Quizzes</a>
             <a class="sidebar-link" href="{{ route('create-quiz') }}">Create Quiz</a>
         </div>

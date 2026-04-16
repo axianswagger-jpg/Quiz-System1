@@ -14,7 +14,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
 
-Route::get('/leaderboard', [AttemptController::class, 'leaderboard'])->name('leaderboard');
+
     // Dashboard
     Route::get('/dashboard', function () {
     $userId = auth()->id();
@@ -86,7 +86,7 @@ Route::put('/settings/password', [SettingsController::class, 'updatePassword'])-
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    //Leaderboard
+  
     
     
 
