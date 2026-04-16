@@ -17,12 +17,34 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/leaderboard', [AttemptController::class, 'leaderboard'])->name('leaderboard');
     // Dashboard
     Route::get('/dashboard', function () {
-        return view('dashboard', [
-            'totalQuizzes'     => \App\Models\Quiz::count(),
-            'completedQuizzes' => \App\Models\Attempt::where('user_id', auth()->id())->count(),
-            'avgScore'         => round(\App\Models\Attempt::where('user_id', auth()->id())->avg('score') ?? 0),
-        ]);
-    })->name('dashboard');
+    $userId = auth()->id();
+
+    $totalQuizzes = \App\Models\Quiz::count();
+    $completedQuizzes = \App\Models\Attempt::where('user_id', $userId)->count();
+    $avgScore = round(\App\Models\Attempt::where('user_id', $userId)->avg('score') ?? 0);
+
+    $leaderboard = \App\Models\Attempt::selectRaw('user_id, AVG(score) as avg_score')
+        ->groupBy('user_id')
+        ->orderByDesc('avg_score')
+        ->get()
+        ->values();
+
+    $rank = null;
+
+    foreach ($leaderboard as $index => $entry) {
+        if ($entry->user_id == $userId) {
+            $rank = $index + 1;
+            break;
+        }
+    }
+
+    return view('dashboard', compact(
+        'totalQuizzes',
+        'completedQuizzes',
+        'avgScore',
+        'rank'
+    ));
+})->name('dashboard');
 
     // Quiz History
     Route::get('/quiz-history', [AttemptController::class, 'history'])->name('quiz-history');

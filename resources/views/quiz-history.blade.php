@@ -32,11 +32,12 @@
             <a class="sidebar-link" href="{{ route('scores') }}">My Scores</a>
             <a class="sidebar-link" href="{{ route('leaderboard') }}">Leaderboard</a>
             <a class="sidebar-link" href="{{ route('quiz.index') }}">Manage Quizzes</a>
+            <a class="sidebar-link" href="{{ route('create-quiz') }}">Create Quiz</a>
         </div>
 
         <div class="sidebar-group">
             <div class="sidebar-label"></div>
-            <a class="sidebar-link" href="{{ route('create-quiz') }}">Create Quiz</a>
+            
         </div>
     </aside>
 <section class="dashboard-main glass-panel">

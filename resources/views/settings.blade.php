@@ -10,11 +10,13 @@
            <a class="sidebar-link {{ request()->routeIs('profile.edit') ? 'active-link' : '' }}" href="{{ route('profile.edit') }}">Profile</a>
             <a class="sidebar-link {{ request()->routeIs('settings') ? 'active-link' : '' }}" href="{{ route('settings') }}">Settings</a>
            <a class="sidebar-link {{ request()->routeIs('scores') ? 'active-link' : '' }}" href="{{ route('scores') }}">My Scores</a>
+           <a class="sidebar-link" href="{{ route('leaderboard') }}">Leaderboard</a>
             <a class="sidebar-link {{ request()->routeIs('quiz.index') ? 'active-link' : '' }}" href="{{ route('quiz.index') }}">Manage Quizzes</a>
+            <a class="sidebar-link" href="{{ route('create-quiz') }}">Create Quiz</a>
         </div>
 
         <div class="sidebar-group">
-            <a class="sidebar-link" href="{{ route('create-quiz') }}">Create Quiz</a>
+            
         </div>
     </aside>
 

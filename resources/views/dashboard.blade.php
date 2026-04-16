@@ -1,21 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+.feature-item {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 12px 16px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.05);
+    margin-bottom: 10px;
+    transition: all 0.2s ease;
+}
+
+.feature-item:hover {
+    background: rgba(104,195,255,0.15);
+    transform: translateY(-2px);
+}
+</style>
 <div class="dashboard-wrap">
     <aside class="glass-panel sidebar">
         <div class="sidebar-group">
             <div class="sidebar-label">MENU</div>
             <a class="sidebar-link" href="{{ route('quiz-history') }}">Quiz History</a>
             <a class="sidebar-link" href="{{ route('profile.edit') }}">Profile</a>
-           <a class="sidebar-link" href="{{ route('settings') }}">Settings</a>
+            <a class="sidebar-link" href="{{ route('settings') }}">Settings</a>
            <a class="sidebar-link" href="{{ route('scores') }}">My Scores</a>
            <a class="sidebar-link" href="{{ route('leaderboard') }}">Leaderboard</a>
             <a class="sidebar-link" href="{{ route('quiz.index') }}">Manage Quizzes</a>
+            <a class="sidebar-link" href="{{ route('create-quiz') }}">Create Quiz</a>
         </div>
 
         <div class="sidebar-group">
             <div class="sidebar-label"></div>
-            <a class="sidebar-link" href="{{ route('create-quiz') }}">Create Quiz</a>
+            
         </div>
     </aside>
 
@@ -70,8 +88,8 @@
             </div>
             <div class="stat-card">
                 <h3>Rank</h3>
-                <div class="stat-number">-</div>
-                <p>No ranking yet</p>
+<div class="stat-number">{{ $rank ? '#' . $rank : '-' }}</div>
+<p>{{ $rank ? 'Your current leaderboard position' : 'No ranking yet' }}</p>
             </div>
         </div>
 
@@ -80,9 +98,18 @@
                 <h2>Stay on track ✨</h2>
                 <p>Monitor your progress, check updates, and continue your quiz journey with a clean and modern dashboard.</p>
 
-                <div class="feature-item">📚 View available quizzes anytime</div>
-                <div class="feature-item">📈 Track scores and performance easily</div>
-                <div class="feature-item">🏆 Check your rank and recent activity</div>
+                <a href="{{ route('take-quiz') }}" class="feature-item">
+    📚 View available quizzes anytime
+</a>
+
+<a href="{{ route('scores') }}" class="feature-item">
+    📈 Track scores and performance easily
+</a>
+
+<a href="{{ route('leaderboard') }}" class="feature-item">
+    🏆 Check your rank and recent activity
+</a>
+
             </div>
 
             <div class="large-card">
