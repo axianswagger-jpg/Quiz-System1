@@ -36,89 +36,69 @@
 </div>
 
 <style>
-.settings-page {
-    min-height: 100vh;
-    padding: 40px 15px;
-    background: radial-gradient(circle at top left, #112a64, #03163d 60%, #02102b 100%);
-}
+<style>
+    /* Ensure the container is centered */
+    .dashboard-main {
+        display: flex;
+        justify-content: center;  /* Centers horizontally */
+        align-items: center;      /* Centers vertically */
+        padding: 20px;            /* Add padding to give space around content */
+        min-height: 100vh;        /* Make sure it takes the full height */
+    }
 
-.settings-container {
-    max-width: 900px;
-    margin: auto;
-}
+    .settings-container {
+        width: 100%; /* Full width */
+        max-width: 1200px;  /* Set a max width for larger screens */
+        margin: 0 auto;  /* Center the container */
+        padding: 20px;  /* Padding for spacing */
+    }
 
-.settings-title {
-    font-size: 56px;
-    font-weight: 800;
-    color: #f8fafc;
-    margin-bottom: 28px;
-    line-height: 1;
-}
+    .settings-title {
+        text-align: center; /* Center the title */
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
 
-.settings-card {
-    background: rgba(255,255,255,0.04);
-    border-radius: 22px;
-    padding: 8px 0;
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.08);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.30);
-    overflow: hidden;
-}
+    /* Add more specific styling for different sections */
+    .settings-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
 
-.settings-section-title {
-    padding: 18px 24px;
-    font-size: 14px;
-    color: rgba(255,255,255,0.55);
-}
+    .item-title {
+        font-size: 18px;
+        font-weight: bold;
+    }
 
-.settings-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 20px 24px;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    text-decoration: none;
-    color: #f8fafc;
-    background: transparent;
-    transition: background 0.2s ease;
-    cursor: pointer;
-    box-sizing: border-box;
-}
+    .item-sub {
+        font-size: 14px;
+        color: #888;
+    }
 
-.settings-item:hover {
-    background: rgba(255,255,255,0.05);
-}
+    /* Styling for form input */
+    .form-input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
 
-.item-title {
-    font-weight: 700;
-    font-size: 18px;
-    color: #ffffff;
-}
+    /* Button styling */
+    .btn-save {
+        background-color: #3498db;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 
-.item-sub {
-    font-size: 13px;
-    color: rgba(255,255,255,0.6);
-    margin-top: 4px;
-}
-
-.arrow {
-    font-size: 22px;
-    color: rgba(255,255,255,0.45);
-    flex-shrink: 0;
-}
-
-.logout-form {
-    margin: 0;
-}
-
-.logout-btn-wrap {
-    border: none;
-    text-align: left;
-}
-
-.logout-btn {
-    color: #f87171;
-}
+    .btn-save:hover {
+        background-color: #2980b9;
+    }
+</style>
 </style>
 @endsection
