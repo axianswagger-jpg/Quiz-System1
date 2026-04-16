@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="auth-wrap">
-    <section class="glass-panel auth-info">
+   
         <h1>Welcome back 👋</h1>
         <p>Log in to take quizzes, track your attempts, and view your results.</p>
 
@@ -13,7 +13,6 @@
         </div>
     </section>
 
-    <section class="glass-panel auth-form-card">
         <h2>Login</h2>
         <p>Use your email and password to continue.</p>
 

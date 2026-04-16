@@ -20,13 +20,3 @@
         @endauth
     </div>
 </nav>
-<div class="menu">
-    <a href="{{ route('dashboard') }}" class="sidebar-link">Dashboard</a>
-    <a href="{{ route('take-quiz') }}" class="sidebar-link">Take Quiz</a>
-    <a href="{{ route('scores') }}" class="sidebar-link">My Scores</a>
-    <a href="{{ route('quiz-history') }}" class="sidebar-link">Quiz History</a>
-    <a href="{{ route('leaderboard') }}" class="sidebar-link">Leaderboard</a>
-    <a href="{{ route('profile') }}" class="sidebar-link">Profile</a>
-    <a href="{{ route('settings') }}" class="sidebar-link">Settings</a>
-    <a href="{{ route('create-quiz') }}" class="sidebar-link">Create Quiz</a>
-</div>

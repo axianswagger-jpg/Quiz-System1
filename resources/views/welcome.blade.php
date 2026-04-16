@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="hero-wrap">
-    <section class="glass-panel hero-panel">
         <div class="hero-center">
             <h1 class="hero-title">Welcome to Quiz System 🎓</h1>
             <p class="hero-subtitle">Test your knowledge, track your attempts, and improve your skills.</p>

@@ -88,7 +88,7 @@
 </style>
 
 <div class="dashboard-wrap">
-    <aside class="glass-panel sidebar">
+
         <div class="sidebar-group">
             <div class="sidebar-label">MENU</div>
             <a class="sidebar-link" href="{{ route('quiz-history') }}">Quiz History</a>
@@ -103,7 +103,7 @@
         </div>
     </aside>
 
-    <section class="dashboard-main glass-panel">
+  
         <div class="cq-wrap">
             <div class="cq-header">
                 <h1>✏️ Edit Quiz</h1>

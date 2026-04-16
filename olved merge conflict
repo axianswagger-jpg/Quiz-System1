@@ -1,0 +1,127 @@
+[33mcommit 5f20b0c2d4bd92667a90c5e97c5f037ea9752668[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/quiz-submission[m[33m, [m[1;31morigin/feature/quiz-submission[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Trisha <maicotrishaangela@gmail.com>
+Date:   Thu Apr 16 18:20:06 2026 +0800
+
+    ano ba to
+
+[33mcommit 85e1ef0e89596147dec560e824096781959ed580[m
+Author: JP Del Rosario <jhnpldlrsr@gmail.com>
+Date:   Wed Apr 15 22:26:26 2026 +0800
+
+    Fix merge conflict in web.php
+
+[33mcommit df1c6e8175f01ddc32f37d33332cced4c70eb6ea[m
+Author: kurtgernale03-boop <kurt.gernale.03@gmail.com>
+Date:   Wed Apr 15 19:47:29 2026 +0800
+
+    updated sidebar, settings UI, active link
+
+[33mcommit 957d96397d2aa1c30839e42c5c68b4a320de4c8a[m
+Author: kurtgernale03-boop <kurt.gernale.03@gmail.com>
+Date:   Wed Apr 15 12:16:42 2026 +0800
+
+    updated settings UI
+
+[33mcommit b4dc4416c369ee4e4f5851c3d5e669a853f6bf93[m
+Merge: 40aeaba acaf84a
+Author: kurtgernale03-boop <kurt.gernale.03@gmail.com>
+Date:   Wed Apr 15 11:36:55 2026 +0800
+
+    fixed merge conflict
+
+[33mcommit 40aeabaccc7ac3231b95ccb7159ee95da606317b[m
+Merge: de10d6f d038fc8
+Author: kurtgernale03-boop <kurt.gernale.03@gmail.com>
+Date:   Wed Apr 15 10:52:15 2026 +0800
+
+    Merge branch 'main' of https://github.com/axianswagger-jpg/Quiz-System1 into feature/quiz-submission
+
+[33mcommit de10d6f48f23a3b70cb5b0d03515c2ab569ab194[m
+Author: kurtgernale03-boop <kurt.gernale.03@gmail.com>
+Date:   Wed Apr 15 10:51:47 2026 +0800
+
+    my changes
+
+[33mcommit acaf84a38f6c32aa1d24818ecc1525a19726d518[m
+Author: Trisha <maicotrishaangela@gmail.com>
+Date:   Wed Apr 15 01:49:31 2026 +0800
+
+    Added Profile Function, Brand Logo function directing to Dashboard and name shortcut to profile
+
+[33mcommit bd391619787a4e229ef9651bfd3bba0499e753fc[m
+Author: Audrey Simon Cortez <axian.swagger@gmail.com>
+Date:   Sun Apr 12 17:33:54 2026 +0800
+
+    Add scores, quiz history, and UI improvements
+
+[33mcommit 3eeb43cb58ac87bde6ce3cd19ff46353afedd995[m
+Author: Audrey Simon Cortez <axian.swagger@gmail.com>
+Date:   Sun Apr 12 11:04:55 2026 +0800
+
+    Fix My Scores sidebar link
+
+[33mcommit 02954e8671ea9386036dfcca3973e0b09e269574[m
+Author: Audrey Simon Cortez <axian.swagger@gmail.com>
+Date:   Sun Apr 12 11:01:38 2026 +0800
+
+    Add full CRUD and quiz taking feature
+
+[33mcommit c5ca149e40054d6ce5a170981fe4d21c10dd3ac3[m
+Author: Trisha <maicotrishaangela@gmail.com>
+Date:   Thu Apr 9 11:35:23 2026 +0800
+
+    Add create quiz and UI fix
+
+[33mcommit af2fb615c1a4cf1aa20cceecc72fc68574e82dfb[m
+Author: Trisha <maicotrishaangela@gmail.com>
+Date:   Sun Apr 5 10:46:24 2026 +0800
+
+    nag add lang sariling database ni maico
+
+[33mcommit 1e7c3066307bef6d270a40dc6d93af351ecbb5a5[m
+Author: Audrey Simon Cortez <axian.swagger@gmail.com>
+Date:   Sat Apr 4 21:58:14 2026 +0800
+
+    Update migrations and env example
+
+[33mcommit 8b5e1eddfb665f571746ff786ba9d6743da5c4c8[m
+Author: kurtgernale03-boop <kurt.gernale.03@gmail.com>
+Date:   Sat Mar 7 00:26:05 2026 +0800
+
+    Added dashboard UI and route
+
+[33mcommit d82957a9f70b16c0b5d82174023b6ce561bdd7bb[m
+Author: Trisha <maicotrishaangela@gmail.com>
+Date:   Mon Mar 2 10:07:21 2026 +0800
+
+    initital commit
+
+[33mcommit d038fc8fb969b06204ae4d7a62a45b01294e812c[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Merge: 5b9ab7a 680b5e1
+Author: axianswagger-jpg <axian.swagger@gmail.com>
+Date:   Mon Mar 2 10:05:35 2026 +0800
+
+    Merge pull request #2 from axianswagger-jpg/feature/quiz-submission
+    
+    Merge pull request #1 from axianswagger-jpg/main
+
+[33mcommit 680b5e1d1c7318d811ab2e3014406a6cef0915a3[m
+Merge: dafcb2d 5b9ab7a
+Author: axianswagger-jpg <axian.swagger@gmail.com>
+Date:   Sun Mar 1 22:16:30 2026 +0800
+
+    Merge pull request #1 from axianswagger-jpg/main
+    
+    Add auth pages/controllers and update routes/views
+
+[33mcommit 5b9ab7a5f40a5291eb1a9fa126796fcb74723bf0[m[33m ([m[1;31morigin/frontend-dev[m[33m, [m[1;32mfrontend-dev[m[33m)[m
+Author: Audrey Simon Cortez <axian.swagger@gmail.com>
+Date:   Sun Mar 1 22:11:25 2026 +0800
+
+    Add auth pages/controllers and update routes/views
+
+[33mcommit dafcb2d3de0fde302cee8616e6eff697ee3a9112[m[33m ([m[1;31morigin/feature/mark-ui[m[33m)[m
+Author: Audrey Simon Cortez <axian.swagger@gmail.com>
+Date:   Sun Mar 1 14:38:12 2026 +0800
+
+    initial comit

@@ -35,13 +35,15 @@
         }
 
         .dashboard-main {
-            margin-left: 260px; /* Same as sidebar width */
-            padding: 30px;
-            min-height: 100vh;  /* Take full height */
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1; /* Ensures it fills available space */
-        }
+    margin-left: 260px;
+    padding: 30px 60px;  /* more horizontal padding */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: calc(100% - 260px);  /* ADD THIS */
+    max-width: 100%;             /* ADD THIS */
+}
 
         /* Brand Logo (Always visible) */
         .brand-logo {
@@ -80,33 +82,33 @@
 </div>
 
 <main class="page-shell">
-    @auth
-        <!-- Show Sidebar unless it's the Login or Register page -->
-        @unless(Request::is('login') || Request::is('register') || Request::is('welcome'))
-            <div class="dashboard-wrap">
-                <aside class="sidebar">
-                    <div class="sidebar-group">
-                        <p class="sidebar-label">MENU</p>
-                        <a href="{{ route('quiz-history') }}" class="sidebar-link">Quiz History</a>
-                        <a href="{{ route('profile.edit') }}" class="sidebar-link">Profile</a>
-                        <a href="{{ route('settings') }}" class="sidebar-link">Settings</a>
-                        <a href="{{ route('scores') }}" class="sidebar-link">My Scores</a>
-                        <a href="{{ route('leaderboard') }}" class="sidebar-link">Leaderboard</a>
-                        <a href="{{ route('quiz.index') }}" class="sidebar-link">Manage Quizzes</a>
-                    </div>
-
-                    <div class="sidebar-group">
-                        <a href="{{ route('create-quiz') }}" class="sidebar-link">Create Quiz</a>
-                    </div>
-                </aside>
+ @auth
+    @unless(Request::is('login') || Request::is('register') || Request::is('welcome'))
+        <div class="dashboard-wrap">
+            <aside class="sidebar">
+                <div class="sidebar-group">
+                    <p class="sidebar-label">MENU</p>
+                    <a href="{{ route('quiz-history') }}" class="sidebar-link">Quiz History</a>
+                    <a href="{{ route('profile.edit') }}" class="sidebar-link">Profile</a>
+                    <a href="{{ route('settings') }}" class="sidebar-link">Settings</a>
+                    <a href="{{ route('scores') }}" class="sidebar-link">My Scores</a>
+                    <a href="{{ route('leaderboard') }}" class="sidebar-link">Leaderboard</a>
+                    <a href="{{ route('quiz.index') }}" class="sidebar-link">Manage Quizzes</a>
+                </div>
+                <div class="sidebar-group">
+                    <a href="{{ route('create-quiz') }}" class="sidebar-link">Create Quiz</a>
+                </div>
+            </aside>
+            <div class="dashboard-main">
+                @yield('content')
             </div>
-        @endunless
-    @endauth
+        </div>
+    @endunless
+@endauth
 
-    <main class="page-shell">
-        @yield('content')
-    </main>
-</main>
+@guest
+    @yield('content')
+@endguest
 
 </body>
 </html>

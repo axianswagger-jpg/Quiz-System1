@@ -1,7 +1,20 @@
 import './bootstrap';
+import '../css/app.css';
 
-import Alpine from 'alpinejs';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 
-window.Alpine = Alpine;
+function App() {
+    return (
+        <div style={{ padding: '2rem' }}>
+            <h1>Quiz App</h1>
+            <p>React is working.</p>
+        </div>
+    );
+}
 
-Alpine.start();
+ReactDOM.createRoot(document.getElementById('app')).render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
+);

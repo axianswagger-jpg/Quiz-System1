@@ -1,65 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<<<<<<< HEAD
 
-<style>
-.dashboard-wrap {
-    display: flex;
-    align-items: flex-start;
-    gap: 24px;
-}
-
-.sidebar {
-    width: 320px;
-    flex-shrink: 0;
-}
-
-.dashboard-main {
-    flex: 1;
-    margin-left: 0;
-    min-width: 0;
-}
-</style>
-@section('content')
-<div class="dashboard-wrap">
-    <aside class="glass-panel sidebar">
-        <div class="sidebar-group">
-            <div class="sidebar-label">MENU</div>
-            <a class="sidebar-link" href="{{ route('quiz-history') }}">Quiz History</a>
-            <a class="sidebar-link" href="{{ route('profile.edit') }}">Profile</a>
-            <a class="sidebar-link" href="{{ route('settings') }}">Settings</a>
-            <a class="sidebar-link" href="{{ route('scores') }}">My Scores</a>
-            <a class="sidebar-link" href="{{ route('leaderboard') }}">Leaderboard</a>
-            <a class="sidebar-link" href="{{ route('quiz.index') }}">Manage Quizzes</a>
-            <a class="sidebar-link" href="{{ route('create-quiz') }}">Create Quiz</a>
-        </div>
-
-        <div class="sidebar-group">
-            <div class="sidebar-label"></div>
-            
-        </div>
-    </aside>
-=======
->>>>>>> 5f20b0c2d4bd92667a90c5e97c5f037ea9752668
-<section class="dashboard-main glass-panel">
-    <div class="dashboard-wrap">
-        <aside class="glass-panel sidebar">
-            <div class="sidebar-group">
-                <div class="sidebar-label">MENU</div>
-                <a class="sidebar-link" href="{{ route('quiz-history') }}">Quiz History</a>
-                <a class="sidebar-link" href="{{ route('profile.edit') }}">Profile</a>
-                <a class="sidebar-link" href="{{ route('settings') }}">Settings</a>
-                <a class="sidebar-link" href="{{ route('scores') }}">My Scores</a>
-                <a class="sidebar-link" href="{{ route('leaderboard') }}">Leaderboard</a>
-                <a class="sidebar-link" href="{{ route('quiz.index') }}">Manage Quizzes</a>
-            </div>
-
-            <div class="sidebar-group">
-                <div class="sidebar-label"></div>
-                <a class="sidebar-link" href="{{ route('create-quiz') }}">Create Quiz</a>
-            </div>
-        </aside>
 
         <div class="history-page">
             <h1 class="history-title">Quiz History</h1>

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="auth-wrap">
-    <section class="glass-panel auth-info green-tint">
+   
         <h1>Create your account ✨</h1>
         <p>Register to start taking quizzes and track your progress.</p>
 
@@ -13,7 +13,7 @@
         </div>
     </section>
 
-    <section class="glass-panel auth-form-card">
+   
         <h2>Register</h2>
         <p>Fill in your details to get started.</p>
 
