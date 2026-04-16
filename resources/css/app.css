@@ -304,28 +304,34 @@ a {
 }
 
 .brand-logo {
-    display: inline-block;
-    font-size: 42px;
-    font-weight: 900;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 32px;
     color: #ffffff;
+    letter-spacing: -0.5px;
     text-decoration: none;
-    line-height: 1;
-    letter-spacing: -1px;
+    position: fixed;
+    top: 28px;
+    left: 25px;
+    z-index: 2000;
 }
 
 .dashboard-wrap {
-    display: block;
+    display: flex;
+    min-height: 100vh;
 }
+
 
 .sidebar {
     position: fixed;
-    top: 16px;
-    left: 16px;
-    width: 300px;
-    height: calc(100vh - 32px);
-    padding: 20px;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    padding: 110px 22px 22px 22px;  /* Space for logo */
     overflow-y: auto;
     z-index: 1000;
+    background: #1e293b; /* Dark sidebar color */
 }
 
 .sidebar-brand {
@@ -379,9 +385,12 @@ a {
 }
 
 .dashboard-main {
-    margin-left: 338px;
-    padding: 28px;
+    margin-left: 260px;  /* Same as sidebar width */
+    width: calc(100% - 260px);
+    padding: 30px;
+    min-height: 100vh;
 }
+
 
 .dashboard-top {
     display: flex;
