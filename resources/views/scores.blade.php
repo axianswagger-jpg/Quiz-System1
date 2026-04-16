@@ -79,89 +79,69 @@
     .empty-state { text-align: center; color: #9fb0cb; padding: 40px; }
 </style>
 
-<div class="dashboard-wrap">
-    <aside class="glass-panel sidebar">
-        <div class="sidebar-group">
-            <div class="sidebar-label">MENU</div>
-            <a class="sidebar-link" href="{{ route('quiz-history') }}">Quiz History</a>
-            <a class="sidebar-link" href="{{ route('profile.edit') }}">Profile</a>
-            <a class="sidebar-link" href="{{ route('settings') }}">Settings</a>
-            <a class="sidebar-link" href="{{ route('scores') }}">My Scores</a>
-            <a class="sidebar-link" href="{{ route('leaderboard') }}">Leaderboard</a>
-            <a class="sidebar-link" href="{{ route('quiz.index') }}">Manage Quizzes</a>
-            <a class="sidebar-link" href="{{ route('create-quiz') }}">Create Quiz</a>
-        </div>
-        <div class="sidebar-group">
-            <div class="sidebar-label"></div>
-            
-        </div>
-    </aside>
+{{-- CONTENT ONLY — sidebar at dashboard-wrap ay nasa layouts/app.blade.php na --}}
+<div class="cq-wrap">
+    <div class="cq-header">
+        <h1>🏆 My Scores</h1>
+        <p>Your latest quiz results.</p>
+    </div>
 
-    <section class="dashboard-main glass-panel">
-        <div class="cq-wrap">
-            <div class="cq-header">
-                <h1>🏆 My Scores</h1>
-                <p>Your latest quiz results.</p>
-            </div>
+    {{-- Show result after submitting --}}
+    @if(session('result'))
+    <div class="result-card">
+        <h2>✅ Quiz Completed!</h2>
+        <p style="color:#aac4e0;">{{ session('result')['title'] }}</p>
+        <div class="score-big">{{ session('result')['score'] }}%</div>
+        <p style="color:#9fb0cb;">{{ session('result')['correct'] }} / {{ session('result')['total'] }} correct</p>
+        <a href="{{ route('take-quiz') }}" class="btn-retake" style="display:inline-block; margin-top:10px; padding:10px 24px; font-size:14px;">Take Another Quiz</a>
+    </div>
+    @endif
 
-            {{-- Show result after submitting --}}
-            @if(session('result'))
-            <div class="result-card">
-                <h2>✅ Quiz Completed!</h2>
-                <p style="color:#aac4e0;">{{ session('result')['title'] }}</p>
-                <div class="score-big">{{ session('result')['score'] }}%</div>
-                <p style="color:#9fb0cb;">{{ session('result')['correct'] }} / {{ session('result')['total'] }} correct</p>
-                <a href="{{ route('take-quiz') }}" class="btn-retake" style="display:inline-block; margin-top:10px; padding:10px 24px; font-size:14px;">Take Another Quiz</a>
-            </div>
+    {{-- Summary Stats --}}
+    @if(count($attempts) > 0)
+    <div class="stats-row">
+        <div class="stat-box">
+            <div class="stat-num">{{ round($attempts->avg('score')) }}%</div>
+            <div class="stat-label">Average Score</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-num">{{ $attempts->max('score') }}%</div>
+            <div class="stat-label">Best Score</div>
+        </div>
+    </div>
+    @endif
+
+    {{-- Score Cards --}}
+    @forelse($attempts as $attempt)
+    <div class="cq-card">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h2>{{ $attempt->quiz->title }}</h2>
+            @if($attempt->score >= 75)
+                <span class="score-pill score-high">{{ $attempt->score }}%</span>
+            @elseif($attempt->score >= 50)
+                <span class="score-pill score-mid">{{ $attempt->score }}%</span>
+            @else
+                <span class="score-pill score-low">{{ $attempt->score }}%</span>
             @endif
-
-            {{-- Summary Stats --}}
-            @if(count($attempts) > 0)
-            <div class="stats-row">
-                <div class="stat-box">
-                    <div class="stat-num">{{ round($attempts->avg('score')) }}%</div>
-                    <div class="stat-label">Average Score</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-num">{{ $attempts->max('score') }}%</div>
-                    <div class="stat-label">Best Score</div>
-                </div>
-            </div>
-            @endif
-
-            {{-- Score Cards --}}
-            @forelse($attempts as $attempt)
-            <div class="cq-card">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <h2>{{ $attempt->quiz->title }}</h2>
-                    @if($attempt->score >= 75)
-                        <span class="score-pill score-high">{{ $attempt->score }}%</span>
-                    @elseif($attempt->score >= 50)
-                        <span class="score-pill score-mid">{{ $attempt->score }}%</span>
-                    @else
-                        <span class="score-pill score-low">{{ $attempt->score }}%</span>
-                    @endif
-                </div>
-
-                {{-- Progress Bar --}}
-                <div class="progress-wrap">
-                    <div class="progress-bar {{ $attempt->score >= 75 ? 'progress-high' : ($attempt->score >= 50 ? 'progress-mid' : 'progress-low') }}"
-                        style="width: {{ $attempt->score }}%"></div>
-                </div>
-
-                <div class="card-footer">
-                    <div>
-                        <p>✅ Correct: {{ $attempt->correct_answers }} / {{ $attempt->total_questions }}</p>
-                        <p style="font-size:12px;">🕐 {{ $attempt->created_at->diffForHumans() }}</p>
-                    </div>
-                </div>
-            </div>
-            @empty
-                @if(!session('result'))
-                <div class="empty-state">No scores yet. Take a quiz first!</div>
-                @endif
-            @endforelse
         </div>
-    </section>
+
+        <div class="progress-wrap">
+            <div class="progress-bar {{ $attempt->score >= 75 ? 'progress-high' : ($attempt->score >= 50 ? 'progress-mid' : 'progress-low') }}"
+                style="width: {{ $attempt->score }}%"></div>
+        </div>
+
+        <div class="card-footer">
+            <div>
+                <p>✅ Correct: {{ $attempt->correct_answers }} / {{ $attempt->total_questions }}</p>
+                <p style="font-size:12px;">🕐 {{ $attempt->created_at->diffForHumans() }}</p>
+            </div>
+        </div>
+    </div>
+    @empty
+        @if(!session('result'))
+        <div class="empty-state">No scores yet. Take a quiz first!</div>
+        @endif
+    @endforelse
 </div>
+
 @endsection

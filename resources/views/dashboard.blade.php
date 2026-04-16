@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<<<<<<< HEAD
+
 <style>
 .feature-item {
     display: block;
@@ -106,7 +106,7 @@
     📈 Track scores and performance easily
 </a>
 
-<a href="{{ route('leaderboard') }}" class="feature-item">
+
     🏆 Check your rank and recent activity
 </a>
 
@@ -124,7 +124,6 @@
         </div>
     </section>
 </div>
-=======
 <section class="dashboard-main glass-panel">
     <div class="dashboard-top">
         <div>
@@ -202,5 +201,5 @@
         </div>
     </div>
 </section>
->>>>>>> 5f20b0c2d4bd92667a90c5e97c5f037ea9752668
+
 @endsection

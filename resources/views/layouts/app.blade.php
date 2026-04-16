@@ -92,7 +92,7 @@
                     <a href="{{ route('profile.edit') }}" class="sidebar-link">Profile</a>
                     <a href="{{ route('settings') }}" class="sidebar-link">Settings</a>
                     <a href="{{ route('scores') }}" class="sidebar-link">My Scores</a>
-                    <a href="{{ route('leaderboard') }}" class="sidebar-link">Leaderboard</a>
+                   
                     <a href="{{ route('quiz.index') }}" class="sidebar-link">Manage Quizzes</a>
                 </div>
                 <div class="sidebar-group">
