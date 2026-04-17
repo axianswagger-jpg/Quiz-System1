@@ -81,7 +81,7 @@
 
                 <div class="feature-item">📚 View available quizzes anytime</div>
                 <div class="feature-item">📈 Track scores and performance easily</div>
-                <div class="feature-item">🏆 Check your rank and recent activity</div>
+                <div class="feature-item">🏆 Check your recent activity</div>
             </div>
 
             <div class="large-card">
